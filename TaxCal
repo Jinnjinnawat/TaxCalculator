@@ -1,0 +1,351 @@
+#include<stdio.h>
+int type;
+main(){
+	printf("\n\t\t\t\t\t\tTAX CALCULATOR\n\n\n");
+	printf("\t\t\t\tWe have 5 types of tax that you can choose\n");
+	printf("\t\t\t1.for Personal Income Tax (PIT)\n");
+	printf("\t\t\t2.for Corporate Income Tax (CIT)\n");
+	printf("\t\t\t3.for Value Added Tax (VAT)\n");
+	printf("\t\t\t4.for Specific Business Tax (SBT)\n");
+	printf("\t\t\t5.for Stamp Duty (SD)\n");
+	printf("\n\t\t\tPlease enter number:");
+	scanf("%d",&type);
+	switch(type){
+		case 1:Personal_Income_Tax();break;
+		case 2:Corporate_Income_Tax();break;
+		case 3:Value_Added_Tax();break;
+		case 4:Specific_Business_Tax();break;
+		case 5:Stamp_Duty();break;
+	default :
+	{
+		printf("\t\t\tSomething wrong. Please try again\n\n");
+	}
+	}
+	printf("\t\t\tRemark: This calculator is just a roughly calculation only.\n");
+	printf("\t\t\tfor more information, please visit: www.rd.go.th/272.html");
+	getch();
+}
+
+void Personal_Income_Tax()
+{
+		float sal,ani=0,sum=0,bn,alw,ep,net=0;
+		printf("\n\t\t\tEnter Your Salary (Baht): ");
+		scanf("%f",&sal);
+		printf("\t\t\tEnter Your Bonus (Baht): ");
+		scanf("%f",&bn);
+		printf("\t\t\tEnter Your Allowwance (Baht): ");
+		scanf("%f",&alw);
+		printf("\t\t\tEnter Your Expense (Baht): ");
+		scanf("%f",&ep);
+		ani=sal*12;
+		net=(ani+bn)-(alw+ep);
+		if(net<=150000) 
+			printf("\t\t\tTax Exempt\n");
+		else if (net>=150001 && net<=300000)
+		{
+			sum=(net-150000)*0.05;
+			printf("\t\t\tTotal of personal income tax is %.2f baht\n",sum);
+		}
+		else if (net>=300001 && net<=500000)
+		{
+			sum=(net-300000)*0.1;
+			printf("\t\t\tTotal of personal income tax is %.2f baht\n",sum);
+		}
+		else if (net>=500001 && net<=750000)
+		{
+			sum=(net-500000)*0.15;
+			printf("\t\t\tTotal of personal income tax is %.2f baht\n",sum);
+		}
+		else if (net>=750001 && net<=1000000)
+		{
+			sum=(net-750000)*0.2;
+			printf("\t\t\tTotal of personal income tax is %.2f baht\n",sum);
+		}
+		else if (net>=1000001 && net<=2000000)
+		{
+			sum=(net-1000000)*0.25;
+			printf("\t\t\tTotal of personal income tax is %.2f baht\n",sum);
+		}
+		else if (net>=2000001 && net<=5000000)
+		{
+			sum=(net-2000000)*0.3;
+			printf("\t\t\tTotal of personal income tax is %.2f baht\n",sum);
+		}
+		else if (net>5000000)
+		{
+			sum=(net-5000000)*0.35;
+			printf("\t\t\tTotal of personal income tax is %.2f baht\n",sum);
+		}
+}
+
+void Corporate_Income_Tax(){
+		int i;
+		float net_profit=0,tax,cc,net_income=0;
+		printf("\n\t\t\tYour business is SME or Non SME?\n");
+		printf("\t\t\tEnter 1 for SME\n");
+		printf("\t\t\tEnter 2 for Non SME\n");
+		printf("\t\t\tEnter 3 if you don't know\n");
+		printf("\t\t\tPlease Enter Number: ");
+		scanf("%d",&i);
+		switch(i){
+			case 1 :
+				{
+					printf("\t\t\tEnter Net profit (Baht): ");
+					scanf("%f",&net_profit);
+					if (net_profit <= 300000)
+					{
+						printf("\t\t\tTax Exempt");
+					}
+					else if (net_profit > 300000 && net_profit <= 3000000)
+					{
+						tax = net_profit*0.15;
+						printf("\t\t\tTotal of corporate income tax is %.2f baht",tax);
+					}
+					else if (net_profit > 3000000)
+					{
+						tax = net_profit*0.2;
+						printf("\t\t\tTotal of corporate income tax is %.2f baht",tax);
+					}
+				break;
+				}
+			case 2 :
+				{
+					printf("\t\t\tEnter Net profit (Baht): ");
+					scanf("%f",&net_profit);
+					tax = net_profit*0.2;
+					printf("\t\t\tTotal of corporate income tax is %.2f baht",tax);
+					break;
+				}
+			case 3 :
+				{
+					printf("\t\t\tEnter Capital cost (Baht): ");
+					scanf("%f",&cc);
+					printf("\t\t\tEnter Net income (Baht): ");
+					scanf("%f",&net_income);
+					if (cc <= 5000000 && net_income <= 30000000)
+					{
+					printf("\t\t\tEnter Net profit (Baht): ");
+					scanf("%f",&net_profit);
+					if (net_profit <= 300000)
+					{
+						printf("\t\t\tTax Exempt");
+					}
+					else if (net_profit > 300000 && net_profit <= 3000000)
+					{
+						tax = net_profit*0.15;
+						printf("\t\t\tTotal of corporate income tax is %.2f baht",tax);
+					}
+					else if (net_profit > 3000000)
+					{
+						tax = net_profit*0.2;
+						printf("\t\t\tTotal of corporate income tax is %.2f baht",tax);
+					}
+					else if (cc > 5000000 && net_income > 30000000)
+					{
+						printf("\t\t\tEnter Net profit (Baht): ");
+						scanf("%f",&net_profit);
+						tax = net_profit*0.2;
+						printf("\t\t\tTotal of corporate income tax is %.2f baht",tax);
+					}
+					}
+					break;
+		 	}
+		 	
+		}
+    }
+    
+void Value_Added_Tax(){
+		float price,sum=0;
+		printf("\n\t\t\tEnter the price (Bath): ");
+		scanf("%f",&price);
+		sum=price+(price*0.07);
+		printf("\t\t\tTotal of value added tax %.2f baht\n",sum);
+}
+
+void Specific_Business_Tax(){
+	    int bt;
+	    float net=0,sum=0;
+		printf("\t\t\tType of business\n");
+		printf("\t\t\t1.Business of finance, securities\n"); 
+		printf("\t\t\t2.Life Insurance\n");
+		printf("\t\t\t3.Pawn Shop\n"); 
+		printf("\t\t\t4.Sale of an Immovable\n");
+		printf("\t\t\t5.Selling securities\n"); 
+		printf("\t\t\t6.Factoring\n");
+		printf("\t\t\t7.any other business as prescribed by a royal decree.\n");
+		printf("\t\t\tEnter type of your business: ");
+		scanf("%d",&bt);
+		switch(bt){
+			case 1 :
+				{
+					printf("\t\t\tEnter your net income (baht): ");
+					scanf("%f",&net);
+					sum=net*0.03;
+					printf("\t\t\tTotal of specific business tax is %.2f baht\n",sum);
+					break;
+				}
+			case 2 :
+				{
+					printf("\t\t\tEnter your net income (baht): ");
+					scanf("%f",&net);
+					sum=net*0.03;
+					printf("\t\t\tTotal of specific business tax is %.2f baht\n",sum);
+					break;
+				}
+			case 3 :
+				{
+					printf("\t\t\tEnter your net income (baht): ");
+					scanf("%f",&net);
+					sum=net*0.025;
+					printf("\t\t\tTotal of specific business tax is %.2f baht\n",sum);
+					break;
+				}
+			case 4 :
+				{
+					printf("\t\t\tEnter your net income (baht): ");
+					scanf("%f",&net);
+					sum=net*0.03;
+					printf("\t\t\tTotal of specific business tax is %.2f baht\n",sum);
+					break;
+				}
+			case 5 :
+				{
+					printf("\t\t\tTax Exempt\n");
+					break;
+				}
+			case 6 :
+				{
+					printf("\t\t\tEnter your net income (baht): ");
+					scanf("%f",&net);
+					sum=net*0.03;
+					printf("\t\t\tTotal of specific business tax is %.2f baht\n",sum);
+					break;
+				}
+			case 7 :
+				{
+					printf("\t\t\tEnter your net income (baht): ");
+					scanf("%f",&net);
+					sum=net*0.0001;
+					printf("\t\t\tTotal of specific business tax is %.2f baht\n",sum);
+					break;
+				}
+		break;
+		}
+			
+}
+void Stamp_Duty(){
+			int num,amount,stamp,sum2;
+	        printf("\t\t\tEnter 1 for Document hiring a piece of land\n");
+			printf("\t\t\tEnter 2 for Document rent property\n");
+			printf("\t\t\tEnter 3 for Document guarantee\n");
+			printf("\t\t\tEnter 4 for Document traveller's cheque\n");
+			printf("\t\t\tEnter 5 for Document agent\n");
+			printf("\n\t\t\tPlease enter number: ");
+			scanf("%d",&num);
+			switch(num)
+			{
+				case 1 :
+				{
+					printf("\t\t\tEnter amount: ");
+					scanf("%d",&amount);
+					stamp=1000;
+					sum2=amount/stamp;
+					printf("\t\t\tTotal of stamp duty is %d baht",sum2);
+					break;
+				}
+				case 2 :
+				{
+					printf("\t\t\tEnter amount: ");
+					scanf("%d",&amount);
+					stamp=1000;
+					sum2=amount/stamp;
+					printf("\t\t\tTotal of stamp duty is %d baht",sum2);
+					break;
+				}
+				case 3 :
+				{
+					printf("\t\t\tEnter amount: ");
+					scanf("%d",&amount);
+					if(amount<=1000)
+					{
+						stamp=1000;
+						sum2=amount/stamp;
+						printf("\t\t\tTotal of stamp duty is %d baht\n",sum2);
+					}
+	    			else if(amount<=10000)
+					{
+						stamp=5000;
+						sum2=amount/stamp;
+						printf("\t\t\tTotal of stamp duty is %d baht\n",sum2);
+					}
+					else if(amount>10000)
+					{
+						stamp=10000;
+						sum2=amount/stamp;
+						printf("\t\t\tTotal of stamp duty is %d baht\n",sum2);
+						break;
+					}
+				}
+				break;
+			case 4 :
+				{
+					int num;
+					printf("\t\t\tEnter 1 fot domestic \n ");
+					printf("\t\t\tEnter 2 for foreign \n ");
+					printf("\t\t\tPlease enter number: ");
+					scanf("%d",&num);
+					switch (num)
+					{
+						case 1 : 
+						{
+							printf("\t\t\tEnter amount: ");
+				 			scanf("%d",&amount);
+				 			stamp=10000;
+							sum2=amount/stamp;
+							printf("\t\t\tTotal of stamp duty is %d baht",sum2);	 			
+							break;
+						}
+						case 2 :
+						{
+							printf("\t\t\tEnter amount: ");
+							scanf("%d",&amount);
+							stamp=10000;
+							sum2=amount/stamp;
+							printf("\t\t\tTotal of stamp duty is %d baht",sum2);	 			
+							break;
+						}
+					}
+					break;
+				}
+			case 5 :
+				{
+					int num;
+					printf("\t\t\tEnter 1 for special authority \n");
+					printf("\t\t\tEnter 2 for general authority \n");
+					printf("\t\t\tPlease enter number: ");
+					scanf("%d",&num);
+					switch(num)
+					{
+						case 1 :
+						{
+							printf("\t\t\tEnter amount: \n");
+		    				scanf("%d",&amount);
+		    				stamp=10000;
+							sum2=amount/stamp;
+							printf("\t\t\tTotal of stamp duty is %d baht",sum2);
+							break;
+						}
+						case 2 : 
+						{
+							printf("\t\t\tEnter amount: ");
+		    				scanf("%d",&amount);
+		    				stamp=30000;
+							sum2=amount/stamp;
+							printf("\t\t\tTotal of stamp duty is %d baht",sum2);
+							break;
+						}	
+					}
+					break;
+				}
+			}				
+}
